@@ -1,0 +1,35 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(14, 14, 14);
+}
+
+.brand {
+    width: auto;
+    padding-left: 50px;
+    font-size: 1.8em;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    width: 70vw;
+}
+
+.boton_menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    padding: 10px;
+}
+
+.boton_menu p {
+    font-size: 1.2em;
+}

@@ -1,0 +1,16 @@
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    background-image: url(../assets/Header.jpg);
+    background-position: center;
+    background-size: cover;
+    gap: 10px;
+}
+
+.header h1 {
+    border-bottom: solid 1px rgba(255, 255, 255, 0.829);
+}

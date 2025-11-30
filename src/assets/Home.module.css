@@ -1,0 +1,14 @@
+.home {
+    background-color: rgb(230, 230, 230);
+}
+
+.cards_container {
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 40px;
+}
