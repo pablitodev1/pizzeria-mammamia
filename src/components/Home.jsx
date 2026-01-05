@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div className={styles.home}>
       <Header />
-      <div className="home-container">
+      <div className={styles.cards_container}>
       {pizzas.map((pizza) => (
         <CardPizza
           key={pizza.id}
