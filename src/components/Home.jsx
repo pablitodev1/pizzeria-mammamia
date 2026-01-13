@@ -1,10 +1,25 @@
+import { useState, useEffect } from 'react';
 import styles from '../assets/Home.module.css';
-import {pizzas} from '../helpers/pizzas';
+{/* import {pizzas} from '../helpers/pizzas'; */}
 import CardPizza from "./CardPizza"
 import Header from "./Header"
 
 
 const Home = () => {
+
+  const [pizzas, setPizzas] = useState([]);
+
+  useEffect(() => {
+    consultarApi();
+  }, []);
+
+  const consultarApi = async () => {
+    const url = "http://localhost:5000/api/pizzas";
+    const response = await fetch(url);
+    const data = await response.json();
+    setPizzas(data);
+  }
+
   return (
     <div className={styles.home}>
       <Header />
