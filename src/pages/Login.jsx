@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   return (
-    <form>
+    <form className={styles.loginForm}>
         <div className={styles.inputGroup}>
             <label>
                 Email:

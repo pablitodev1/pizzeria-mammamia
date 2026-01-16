@@ -1,0 +1,17 @@
+.profile_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;
+}
+
+.logout_button {
+  width: 100px;
+  height: 40px;
+  margin-top: 20px;
+  background-color: #3b3939;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -22,7 +22,7 @@ const Register = () => {
     }
 
   return (
-    <form>
+    <form className={styles.registerForm}>
         <div className={styles.inputGroup}>
             <label>
                 Email:

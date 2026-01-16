@@ -4,11 +4,10 @@
   align-items: center;
 }
 
-form {
+.registerForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 15px;
-  height: 50%
 }
