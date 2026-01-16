@@ -6,12 +6,13 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import Cart from './pages/Cart'
 import Pizza from './pages/Pizza'
+import 404 from './pages/404'
 import { Routes, Route } from 'react-router-dom'  
 
 function App() {
 
   return (
-    <>
+    <div className={styles.app}>
     <Navbar/>
     <Routes>
       <Route path="/" element={<Home />} />
@@ -19,6 +20,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/pizza/p001" element={<Pizza />} />
+      <Route path="/*" element={<404 />} />
     </Routes>
     <Footer/>
    
