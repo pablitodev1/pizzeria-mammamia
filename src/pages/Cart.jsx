@@ -1,10 +1,12 @@
 
 import { CartContext } from "../assets/context/CartContext";
+import { UserContext } from "../assets/context/UserContext";
 import { useContext } from "react";
 import styles from '../assets/Cart.module.css';
 
 const Cart = () => {
     const { cart, total, increaseCount, decreaseCount } = useContext(CartContext);
+    const { token } = useContext(UserContext);
 
 
     return (
@@ -28,7 +30,7 @@ const Cart = () => {
                 </div>
             ))}
             <h4 className={styles.total}>Total: ${total.toLocaleString()}</h4>
-            <button className={styles.pay_button}>Pagar</button>
+            <button className={styles.pay_button} disabled={!token}>Pagar</button>
         </div>
     );
 };

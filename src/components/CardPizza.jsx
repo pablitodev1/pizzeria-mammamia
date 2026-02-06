@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { CartContext } from '../assets/context/CartContext';
+import { Link } from 'react-router-dom';
 import styles from '../assets/CardPizza.module.css';
 
 const CardPizza = ({ id, name, price, ingredients, img }) => {
@@ -16,7 +17,9 @@ const CardPizza = ({ id, name, price, ingredients, img }) => {
                 </ul>
                 <p className={styles.price}>Precio: ${price}</p>
                 <div className={styles.button_container}>
-                    <button className={styles.button}>Ver más</button>
+                    <Link to={`/pizza/${id}`}>
+                        <button className={styles.button}>Ver más</button>
+                    </Link>
                     <button className={styles.button} onClick={() => addToCart({ id, name, price, ingredients, img })}>Añadir</button>
                 </div>
             </div>

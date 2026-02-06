@@ -1,13 +1,14 @@
 import styles from '../assets/Navbar.module.css';
-import { useContext } from 'react'; 
+import { useContext } from 'react';
+import { UserContext } from '../assets/context/UserContext';
 import { CartContext } from '../assets/context/CartContext';
 import { IconHome, IconLogin, IconLogout, IconProfile, IconRegister, IconTotal } from '../assets/Icons';
 import { formatCurrency } from '../helpers/formatCurrency';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
 
-    const { total } = useContext(CartContext); 
-    const token = false;
+    const { total } = useContext(CartContext);
+    const { token, logout } = useContext(UserContext);
     const totalFormateado = formatCurrency(total);
 
     return (
@@ -16,51 +17,55 @@ const Navbar = () => {
                 <div className={styles.brand}>
                     <Link to="/">Pizzeria Mamma Mia!</Link>
                 </div>
+
                 <div className={styles.menu}>
-                    <button className={styles.boton_menu}>
-                        <Link to="/" className={styles.link}>
-                        <IconHome size='1.8em' color='white' />
-                        <p>Home</p>
-                        </Link>
-                    </button>
+                    <Link to="/">
+                        <button className={styles.boton_menu}>
+                            <IconHome size='1.8em' color='white' />
+                            <p>Home</p>
+                        </button>
+                    </Link>
+
                     {token ? (
                         <>
-                            <button className={styles.boton_menu}>
-                                <IconProfile size='1.8em' color='white' />
-                                <p>Profile</p>
-                            </button>
-                            <button className={styles.boton_menu}>
+                            <Link to="/profile">
+                                <button className={styles.boton_menu}>
+                                    <IconProfile size='1.8em' color='white' />
+                                    <p>Profile</p>
+                                </button>
+                            </Link>
+                            <button className={styles.boton_menu} onClick={logout}>
                                 <IconLogout size='1.8em' color='white' />
                                 <p>Logout</p>
                             </button>
                         </>
                     ) : (
                         <>
-                            <button className={styles.boton_menu}>
-                                <Link to="/login" className={styles.link}>
-                                <IconLogin size='1.8em' color='white' />
-                                <p>Login</p>
-                                </Link>
-                            </button>
-                            <button className={styles.boton_menu}>
-                                <Link to="/register" className={styles.link}>   
-                                <IconRegister size='1.8em' color='white' />
-                                <p>Register</p>
-                                </Link>
-                            </button>
+                            <Link to="/login">
+                                <button className={styles.boton_menu}>
+                                    <IconLogin size='1.8em' color='white' />
+                                    <p>Login</p>
+                                </button>
+                            </Link>
+                            <Link to="/register">
+                                <button className={styles.boton_menu}>
+                                    <IconRegister size='1.8em' color='white' />
+                                    <p>Register</p>
+                                </button>
+                            </Link>
                         </>
-
                     )}
                 </div>
+
                 <div className={styles.carrito}>
                     <Link to="/cart">
-                    <button className={styles.boton_menu}>
-                        <IconTotal size='1.8em' color='white' />
-                        <p>Total: ${totalFormateado}</p>
-                    </button>
+                        <button className={styles.boton_menu}>
+                            <IconTotal size='1.8em' color='white' />
+                            <p>Total: ${totalFormateado}</p>
+                        </button>
                     </Link>
                 </div>
-            </div >
+            </div>
         </>
     )
 }
