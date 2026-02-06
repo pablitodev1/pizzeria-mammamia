@@ -1,10 +1,12 @@
 import styles from '../assets/Navbar.module.css';
+import { useContext } from 'react'; 
+import { CartContext } from '../assets/context/CartContext';
 import { IconHome, IconLogin, IconLogout, IconProfile, IconRegister, IconTotal } from '../assets/Icons';
 import { formatCurrency } from '../helpers/formatCurrency';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
 
-    const total = 25000;
+    const { total } = useContext(CartContext); 
     const token = false;
     const totalFormateado = formatCurrency(total);
 

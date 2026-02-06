@@ -1,34 +1,11 @@
-import { useState } from "react";
-import { pizzaCart as initialCart } from "../helpers/pizzas";
+
+import { CartContext } from "../assets/context/CartContext";
+import { useContext } from "react";
 import styles from '../assets/Cart.module.css';
 
 const Cart = () => {
-    const [cart, setCart] = useState(initialCart);
+    const { cart, total, increaseCount, decreaseCount } = useContext(CartContext);
 
-    const total = cart.reduce((acc, curr) => acc + curr.price * curr.count, 0);
-
-    const increaseCount = (id) => {
-        const newCart = cart.map((item) => {
-            if (item.id === id) {
-
-                return { ...item, count: item.count + 1 };
-            }
-            return item;
-        });
-        setCart(newCart);
-    };
-
-    const decreaseCount = (id) => {
-        const newCart = cart.map((item) => {
-                if (item.id === id) {
-                    return { ...item, count: item.count - 1 };
-                }
-                return item;
-            })
-            .filter((item) => item.count > 0);
-
-        setCart(newCart);
-    };
 
     return (
         <div className={styles.cart_container}>

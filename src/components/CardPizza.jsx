@@ -1,6 +1,9 @@
+import { useContext } from 'react';
+import { CartContext } from '../assets/context/CartContext';
 import styles from '../assets/CardPizza.module.css';
 
-const CardPizza = ({ name, price, ingredients, img }) => {
+const CardPizza = ({ id, name, price, ingredients, img }) => {
+    const { addToCart } = useContext(CartContext);
     return (
         <>
             <div className={styles.card}>
@@ -14,7 +17,7 @@ const CardPizza = ({ name, price, ingredients, img }) => {
                 <p className={styles.price}>Precio: ${price}</p>
                 <div className={styles.button_container}>
                     <button className={styles.button}>Ver más</button>
-                    <button className={styles.button}>Añadir</button>
+                    <button className={styles.button} onClick={() => addToCart({ id, name, price, ingredients, img })}>Añadir</button>
                 </div>
             </div>
         </>
