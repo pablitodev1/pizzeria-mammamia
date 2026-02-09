@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from "react"; 
+import { UserContext } from "../assets/context/UserContext";
 import styles from '../assets/Register.module.css';
 
 const Register = () => {
@@ -6,48 +7,67 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const handleSubmit = () => {
+    const { register } = useContext(UserContext);
 
-        if (!email.trim() || !password.trim() || !confirmPassword.trim())
+    const handleSubmit = async (e) => {
+  
+        if (e) e.preventDefault();
+
+        if (!email.trim() || !password.trim() || !confirmPassword.trim()) {
             alert("Debes llenar todos los campos");
-         
-        if (password !== confirmPassword) 
+            return; 
+        }
+
+        if (password !== confirmPassword) {
             alert("Las contraseñas no coinciden");
+            return;
+        }
 
-        if (password.length < 6)
+        if (password.length < 6) {
             alert("La contraseña debe tener al menos 6 caracteres");
+            return;
+        }
 
-        if (password == confirmPassword && email.length > 0) 
-            alert("Registro exitoso");
+        await register(email, password);
     }
 
-  return (
-    <form className={styles.registerForm}>
-        <div className={styles.inputGroup}>
-            <label>
-                Email:
-            </label>
-            <input type="email" id="email" onChange={(event) => setEmail(event.target.value)}/>
-        </div>
+    return (
 
-        <div className={styles.inputGroup}>
-            <label>
-                Contraseña:
-            </label>
-            <input type="password" id="password" onChange={(event) => setPassword(event.target.value)}/>
-        </div>
+        <form className={styles.registerForm} onSubmit={handleSubmit}>
+            <div className={styles.inputGroup}>
+                <label htmlFor="email">Email:</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                />
+            </div>
 
-        <div className={styles.inputGroup}>
-            <label>
-                Confirmar Contraseña:
-            </label>
-            <input type="password" id="confirmPassword" onChange={(event) => setConfirmPassword(event.target.value)}/>
-        </div>
-        <div>
-            <button type="button" onClick={handleSubmit}>Registrarse</button>
-        </div>
-    </form>
-  )
+            <div className={styles.inputGroup}>
+                <label htmlFor="password">Contraseña:</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                />
+            </div>
+
+            <div className={styles.inputGroup}>
+                <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
+                <input 
+                    type="password" 
+                    id="confirmPassword" 
+                    value={confirmPassword}
+                    onChange={(event) => setConfirmPassword(event.target.value)}
+                />
+            </div>
+            <div>
+                <button type="submit">Registrarse</button>
+            </div>
+        </form>
+    )
 }
 
-export default Register
+export default Register;

@@ -1,12 +1,17 @@
 import styles from '../assets/Profile.module.css';
+import { useContext } from "react";
+import { UserContext } from "../assets/context/UserContext";
 
-function Profile() {
-  return (
-    <div className={styles.profile_container}>
-        <h2>personagenérica@gmail.com</h2>
-        <button className={styles.logout_button}>Cerrar sesión</button>
-    </div>
-  )
-}
+const Profile = () => {
+    const { email, logout } = useContext(UserContext); 
 
-export default Profile
+    return (
+        <div className={styles.profile_container}>
+            <h2>Mi Perfil</h2>
+            <p>Email: <strong>{email}</strong></p> 
+            <button onClick={logout} className={styles.logout_button}>Cerrar Sesión</button> 
+        </div>
+    );
+};
+
+export default Profile;
